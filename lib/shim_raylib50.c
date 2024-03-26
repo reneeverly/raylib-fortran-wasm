@@ -1,4 +1,4 @@
-// Shim generated at 1711410832390 by reneeverly/raylib-fortran-wasm/patch_prototype.html
+// Shim generated at 1711429298053 by reneeverly/raylib-fortran-wasm/patch_prototype.html
 
 #include "raylib.h"
 
@@ -293,7 +293,7 @@ RLAPI float shim_GetGesturePinchAngle (int i32) {
 }
 
 RLAPI void shim_UpdateCameraPro (Camera *camera,float movement_1, float movement_2, float movement_3,float rotation_1, float rotation_2, float rotation_3, float zoom) {
-   return UpdateCameraPro(*camera,(Vector3){movement_1, movement_2, movement_3},(Vector3){rotation_1, rotation_2, rotation_3},zoom);
+   return UpdateCameraPro(camera,(Vector3){movement_1, movement_2, movement_3},(Vector3){rotation_1, rotation_2, rotation_3},zoom);
 }
 RLAPI Image shim_LoadImageFromScreen (int i32) {
    return LoadImageFromScreen();
@@ -316,7 +316,7 @@ RLAPI void shim_DrawTriangle3D (float v1_1, float v1_2, float v1_3,float v2_1, f
    return DrawTriangle3D((Vector3){v1_1, v1_2, v1_3},(Vector3){v2_1, v2_2, v2_3},(Vector3){v3_1, v3_2, v3_3},color);
 }
 RLAPI void shim_DrawTriangleStrip3D (Vector3 *points, int pointCount, Color color) {
-   return DrawTriangleStrip3D(*points,pointCount,color);
+   return DrawTriangleStrip3D(points,pointCount,color);
 }
 RLAPI void shim_DrawCube (float position_1, float position_2, float position_3, float width, float height, float length, Color color) {
    return DrawCube((Vector3){position_1, position_2, position_3},width,height,length,color);

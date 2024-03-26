@@ -62,7 +62,8 @@ function create_shim() {
                inner_shim += '(Vector3){' + varname + '_1, ' + varname + '_2, ' + varname + '_3},'
             } else {
                shim_script += params[j] + ','
-               inner_shim += varname + ','
+               // fix build error by removing asterisks from inner shim
+               inner_shim += varname.split('*').join('') + ','
             }
          }
          // round out parens

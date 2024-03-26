@@ -28,10 +28,16 @@ Interkosmos's bindings nearly work, but we need to patch them to compile with th
 Things that we can shim:
 * GFortran 4.6 inserts an int as argument on functions that take no arguments
 * GFortran 4.6 splits Vector3 as argument into three floats as arguments
+* GFortran 4.6 can't understand `implicit none (type, external)`
 
 How we fix this:
 * Scan header file for `Vector3` and `(void)`
 * For all instances of those, prepend the c bind names in Interkosmos's bindings with something (We'll use `shim_`).
 * Create a `shim.c` file which implements the incorrect function signature (as `shim_%`) and remaps it to the correct signature.
+* Cut out the `(type, external` part from the implicit none lines.
 
 So, naturally, this script fetches both the Raylib 5.0 WASM zip as well as the latest Interkosmos zip.  Version 0.1.0 appears to be RayLib 4.5, which isn't what we want here.
+
+#### Building Your App
+
+TODO: Currently fails to run, giving error `Uncaught Please compile your program with async support in order to use asynchronous operations like emscripten_sleep`.  I think we'll have to use the `emscripten_set_main_loop` function.  The last time I tested it, there was some issue when `c_ptr` not returning a value that emscripten could map to the table, so we might have to bootstrap our fortran app with some c.

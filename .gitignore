@@ -34,3 +34,4 @@
 # Paths to exclude
 dep/
 lib/patched*
+build/*

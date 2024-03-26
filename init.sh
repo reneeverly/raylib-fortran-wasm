@@ -23,5 +23,10 @@ INTERKOSMOS=$(cat ./dep/fortran-raylib-master/src/raylib.f90)
 while read f; do
    INTERKOSMOS=`sed "s/[\"|']$f[\"|']/'shim_$f'/g" <<< "$INTERKOSMOS"`
 done < "./lib/shim_raylib50_affect.txt"
+
+# fix implicit none (type, external)
+INTERKOSMOS=`sed 's/implicit none (type, external)/implicit none/g' <<< "$INTERKOSMOS"`
+
+# Write out the patched bindings
 echo "! Patched at `date` by reneeverly/raylib-fortran-wasm/init.sh" > ./lib/patched_raylib.f90
 echo "$INTERKOSMOS" >> ./lib/patched_raylib.f90
