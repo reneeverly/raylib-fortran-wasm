@@ -7,6 +7,7 @@ FC=emfc.sh
 
 CCFLAGS=-I./dep/raylib-5.0_webassembly/include/ -s USE_GLFW=3 --shell-file ./src/shell_minimal.html
 FCFLAGS=-fno-range-check
+WLDFLAGS=-s WASM=1
 
 OUTDIR=./build
 
@@ -21,5 +22,5 @@ index.html: $(OBJ_FILES)
 	$(FC) $(FCFLAGS) -o $@ -c $<
 
 clean:
-	rm *.o ./lib/*.o
+	rm *.o ./lib/*.o ./src/*.o
 	rm *.mod

@@ -5,10 +5,24 @@
 !
 ! Author:  Philipp Engel
 ! Licence: ISC
+module emscripten
+   use, intrinsic :: iso_c_binding
+   implicit none
+interface
+    subroutine emscripten_set_main_loop(funct, timeout, emu) bind(c, name="emscripten_set_main_loop")
+        import :: c_int32_t, c_funptr
+        type(c_funptr), intent(in), value :: funct
+        integer(c_int32_t), intent(in), value :: timeout
+        integer(c_int32_t), intent(in), value :: emu
+    end subroutine
+end interface
+end module
 program main
-    use, intrinsic :: iso_c_binding, only: c_null_char
+    use, intrinsic :: iso_c_binding
     use :: raylib
+    use :: emscripten
     implicit none
+
 
     integer, parameter :: SCREEN_WIDTH  = 800
     integer, parameter :: SCREEN_HEIGHT = 450
@@ -28,20 +42,25 @@ program main
 
     cube_pos = vector3_type(0.0, 0.0, 0.0)
 
-    do while (.not. window_should_close())
-        call begin_drawing()
-            call clear_background(RAYWHITE)
+    call emscripten_set_main_loop(c_funloc(update), 0, 1)
+    ! This has to be here, or update_draw straight up isn't included in the bc file.
+    call update()
 
-            call begin_mode3d(camera)
-                call draw_cube(cube_pos, 2.0, 2.0, 2.0, RED)
-                call draw_cube_wires(cube_pos, 2.0, 2.0, 2.0, MAROON)
-                call draw_grid(10, 1.0)
-            call end_mode3d()
+contains
 
-            call draw_text('Welcome to the third dimension!' // c_null_char, 10, 40, 20, DARKGRAY)
-            call draw_fps(10, 10)
-        call end_drawing()
-    end do
+subroutine  update() bind(c)
+   call begin_drawing()
+      call clear_background(RAYWHITE)
 
-    call close_window()
+      call begin_mode3d(camera)
+         call draw_cube(cube_pos, 2.0, 2.0, 2.0, RED)
+         call draw_cube_wires(cube_pos, 2.0, 2.0, 2.0, MAROON)
+         call draw_grid(10, 1.0)
+      call end_mode3d()
+
+      call draw_text('Welcome to the third dimension!' // c_null_char, 10, 40, 20, DARKGRAY)
+      call draw_fps(10, 10)
+   call end_drawing()
+end subroutine
+
 end program main
