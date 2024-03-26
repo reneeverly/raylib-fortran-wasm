@@ -19,7 +19,9 @@ The aforementioned `StarGate01/Full-Stack-Fortran` repository has a really nice 
 
 ### How It Works
 
-#### Patching Interkosmos's Bindings [WIP]
+#### Patching Interkosmos's Bindings
+
+Run: `./init.sh`
 
 Interkosmos's bindings nearly work, but we need to patch them to compile with this ancient GCC 4.6 + DragonEgg setup.  It might be a compiler flag somewhere that would fix this more easily (It feels like some sort of premature/incorrect optimization happening), but I couldn't figure it out - so let's patch and shim the bindings!
 
@@ -28,8 +30,8 @@ Things that we can shim:
 * GFortran 4.6 splits Vector3 as argument into three floats as arguments
 
 How we fix this:
-* Scan header file (or simplified header, like from https://www.raylib.com/cheatsheet/cheatsheet.html) for `Vector3` and `(void)`
+* Scan header file for `Vector3` and `(void)`
 * For all instances of those, prepend the c bind names in Interkosmos's bindings with something (We'll use `shim_`).
 * Create a `shim.c` file which implements the incorrect function signature (as `shim_%`) and remaps it to the correct signature.
 
-TODO: Those above steps.  Step 1 feels like a regex task, so I'll probably start out with a javascript proof of concept.  Step 2 should be a basic `sed` loop in bash/zsh.  Step 3 might require a bit more nuance.
+So, naturally, this script fetches both the Raylib 5.0 WASM zip as well as the latest Interkosmos zip.  Version 0.1.0 appears to be RayLib 4.5, which isn't what we want here.
