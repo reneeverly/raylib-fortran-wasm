@@ -1,4 +1,4 @@
-SOURCE_FILES := ./lib/patched_raylib.f90 ./lib/shim_raylib50.c ./src/camera3d.f90
+SOURCE_FILES := ./lib/patched_raylib.f90 ./lib/emscripten.f90 ./lib/shim_raylib50.c ./src/camera3d.f90
 LIB_FILES := ./dep/raylib-5.0_webassembly/lib/libraylib.a /app/lib/libgfortran.a
 OBJ_FILES = $(patsubst %.f90, %.o, $(patsubst %.c, %.o, $(SOURCE_FILES)))
 
@@ -22,5 +22,4 @@ index.html: $(OBJ_FILES)
 	$(FC) $(FCFLAGS) -o $@ -c $<
 
 clean:
-	rm *.o ./lib/*.o ./src/*.o
-	rm *.mod
+	rm *.o ./lib/*.o ./src/*.o *.mod
