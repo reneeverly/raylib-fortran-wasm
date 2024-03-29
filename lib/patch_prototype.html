@@ -73,6 +73,36 @@ function create_shim() {
          // combine the outer and inner shim
          shim_script += ' {' + inner_shim + ';\n}\n'
       }
+      // And Vector2
+      else if (all_functions[i][3].includes('Vector2')) {
+         // ES6 get shim and regular name
+         let [function_name_shim, function_name_no_asterisk] = mark_as_affected_and_return_shimnames(i)
+
+         // start the shim
+         shim_script += all_functions[i][1] + ' ' + function_name_shim + ' ('
+         let inner_shim = '\n   return ' + function_name_no_asterisk + '('
+         
+         // Split up the variables
+         let params = all_functions[i][3].split(',')
+         for (j in params) {
+            let argsplit = params[j].split(' ')
+            let varname = argsplit[argsplit.length - 1]
+            if (params[j].includes('Vector2') && !params[j].includes('*')) {
+               shim_script += 'float ' + varname + '_1, float ' + varname + '_2,'
+               inner_shim += '(Vector2){' + varname + '_1, ' + varname + '_2},'
+            } else {
+               shim_script += params[j] + ','
+               // fix build error by removing asterisks from inner shim
+               inner_shim += varname.split('*').join('') + ','
+            }
+         }
+         // round out parens
+         if (shim_script[shim_script.length - 1] == ',') shim_script = shim_script.substring(0, shim_script.length - 1) + ')'
+         if (inner_shim[inner_shim.length - 1] == ',') inner_shim = inner_shim.substring(0, inner_shim.length - 1) + ')'
+
+         // combine the outer and inner shim
+         shim_script += ' {' + inner_shim + ';\n}\n'
+      }
 
       
    }

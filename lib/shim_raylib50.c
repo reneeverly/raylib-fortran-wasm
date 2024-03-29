@@ -1,4 +1,4 @@
-// Shim generated at 1711429298053 by reneeverly/raylib-fortran-wasm/patch_prototype.html
+// Shim generated at 1711689886452 by reneeverly/raylib-fortran-wasm/patch_prototype.html
 
 #include "raylib.h"
 
@@ -170,11 +170,20 @@ RLAPI void shim_EndVrStereoMode (int i32) {
    return EndVrStereoMode();
 }
 
+RLAPI Ray shim_GetMouseRay (float mousePosition_1, float mousePosition_2, Camera camera) {
+   return GetMouseRay((Vector2){mousePosition_1, mousePosition_2},camera);
+}
 RLAPI Vector2 shim_GetWorldToScreen (float position_1, float position_2, float position_3, Camera camera) {
    return GetWorldToScreen((Vector3){position_1, position_2, position_3},camera);
 }
+RLAPI Vector2 shim_GetScreenToWorld2D (float position_1, float position_2, Camera2D camera) {
+   return GetScreenToWorld2D((Vector2){position_1, position_2},camera);
+}
 RLAPI Vector2 shim_GetWorldToScreenEx (float position_1, float position_2, float position_3, Camera camera, int width, int height) {
    return GetWorldToScreenEx((Vector3){position_1, position_2, position_3},camera,width,height);
+}
+RLAPI Vector2 shim_GetWorldToScreen2D (float position_1, float position_2, Camera2D camera) {
+   return GetWorldToScreen2D((Vector2){position_1, position_2},camera);
 }
 RLAPI float shim_GetFrameTime (int i32) {
    return GetFrameTime();
@@ -295,14 +304,188 @@ RLAPI float shim_GetGesturePinchAngle (int i32) {
 RLAPI void shim_UpdateCameraPro (Camera *camera,float movement_1, float movement_2, float movement_3,float rotation_1, float rotation_2, float rotation_3, float zoom) {
    return UpdateCameraPro(camera,(Vector3){movement_1, movement_2, movement_3},(Vector3){rotation_1, rotation_2, rotation_3},zoom);
 }
+RLAPI void shim_DrawPixelV (float position_1, float position_2, Color color) {
+   return DrawPixelV((Vector2){position_1, position_2},color);
+}
+RLAPI void shim_DrawLineV (float startPos_1, float startPos_2,float endPos_1, float endPos_2, Color color) {
+   return DrawLineV((Vector2){startPos_1, startPos_2},(Vector2){endPos_1, endPos_2},color);
+}
+RLAPI void shim_DrawLineEx (float startPos_1, float startPos_2,float endPos_1, float endPos_2, float thick, Color color) {
+   return DrawLineEx((Vector2){startPos_1, startPos_2},(Vector2){endPos_1, endPos_2},thick,color);
+}
+RLAPI void shim_DrawLineStrip (Vector2 *points, int pointCount, Color color) {
+   return DrawLineStrip(points,pointCount,color);
+}
+RLAPI void shim_DrawLineBezier (float startPos_1, float startPos_2,float endPos_1, float endPos_2, float thick, Color color) {
+   return DrawLineBezier((Vector2){startPos_1, startPos_2},(Vector2){endPos_1, endPos_2},thick,color);
+}
+RLAPI void shim_DrawCircleSector (float center_1, float center_2, float radius, float startAngle, float endAngle, int segments, Color color) {
+   return DrawCircleSector((Vector2){center_1, center_2},radius,startAngle,endAngle,segments,color);
+}
+RLAPI void shim_DrawCircleSectorLines (float center_1, float center_2, float radius, float startAngle, float endAngle, int segments, Color color) {
+   return DrawCircleSectorLines((Vector2){center_1, center_2},radius,startAngle,endAngle,segments,color);
+}
+RLAPI void shim_DrawCircleV (float center_1, float center_2, float radius, Color color) {
+   return DrawCircleV((Vector2){center_1, center_2},radius,color);
+}
+RLAPI void shim_DrawCircleLinesV (float center_1, float center_2, float radius, Color color) {
+   return DrawCircleLinesV((Vector2){center_1, center_2},radius,color);
+}
+RLAPI void shim_DrawRing (float center_1, float center_2, float innerRadius, float outerRadius, float startAngle, float endAngle, int segments, Color color) {
+   return DrawRing((Vector2){center_1, center_2},innerRadius,outerRadius,startAngle,endAngle,segments,color);
+}
+RLAPI void shim_DrawRingLines (float center_1, float center_2, float innerRadius, float outerRadius, float startAngle, float endAngle, int segments, Color color) {
+   return DrawRingLines((Vector2){center_1, center_2},innerRadius,outerRadius,startAngle,endAngle,segments,color);
+}
+RLAPI void shim_DrawRectangleV (float position_1, float position_2,float size_1, float size_2, Color color) {
+   return DrawRectangleV((Vector2){position_1, position_2},(Vector2){size_1, size_2},color);
+}
+RLAPI void shim_DrawRectanglePro (Rectangle rec,float origin_1, float origin_2, float rotation, Color color) {
+   return DrawRectanglePro(rec,(Vector2){origin_1, origin_2},rotation,color);
+}
+RLAPI void shim_DrawTriangle (float v1_1, float v1_2,float v2_1, float v2_2,float v3_1, float v3_2, Color color) {
+   return DrawTriangle((Vector2){v1_1, v1_2},(Vector2){v2_1, v2_2},(Vector2){v3_1, v3_2},color);
+}
+RLAPI void shim_DrawTriangleLines (float v1_1, float v1_2,float v2_1, float v2_2,float v3_1, float v3_2, Color color) {
+   return DrawTriangleLines((Vector2){v1_1, v1_2},(Vector2){v2_1, v2_2},(Vector2){v3_1, v3_2},color);
+}
+RLAPI void shim_DrawTriangleFan (Vector2 *points, int pointCount, Color color) {
+   return DrawTriangleFan(points,pointCount,color);
+}
+RLAPI void shim_DrawTriangleStrip (Vector2 *points, int pointCount, Color color) {
+   return DrawTriangleStrip(points,pointCount,color);
+}
+RLAPI void shim_DrawPoly (float center_1, float center_2, int sides, float radius, float rotation, Color color) {
+   return DrawPoly((Vector2){center_1, center_2},sides,radius,rotation,color);
+}
+RLAPI void shim_DrawPolyLines (float center_1, float center_2, int sides, float radius, float rotation, Color color) {
+   return DrawPolyLines((Vector2){center_1, center_2},sides,radius,rotation,color);
+}
+RLAPI void shim_DrawPolyLinesEx (float center_1, float center_2, int sides, float radius, float rotation, float lineThick, Color color) {
+   return DrawPolyLinesEx((Vector2){center_1, center_2},sides,radius,rotation,lineThick,color);
+}
+RLAPI void shim_DrawSplineLinear (Vector2 *points, int pointCount, float thick, Color color) {
+   return DrawSplineLinear(points,pointCount,thick,color);
+}
+RLAPI void shim_DrawSplineBasis (Vector2 *points, int pointCount, float thick, Color color) {
+   return DrawSplineBasis(points,pointCount,thick,color);
+}
+RLAPI void shim_DrawSplineCatmullRom (Vector2 *points, int pointCount, float thick, Color color) {
+   return DrawSplineCatmullRom(points,pointCount,thick,color);
+}
+RLAPI void shim_DrawSplineBezierQuadratic (Vector2 *points, int pointCount, float thick, Color color) {
+   return DrawSplineBezierQuadratic(points,pointCount,thick,color);
+}
+RLAPI void shim_DrawSplineBezierCubic (Vector2 *points, int pointCount, float thick, Color color) {
+   return DrawSplineBezierCubic(points,pointCount,thick,color);
+}
+RLAPI void shim_DrawSplineSegmentLinear (float p1_1, float p1_2,float p2_1, float p2_2, float thick, Color color) {
+   return DrawSplineSegmentLinear((Vector2){p1_1, p1_2},(Vector2){p2_1, p2_2},thick,color);
+}
+RLAPI void shim_DrawSplineSegmentBasis (float p1_1, float p1_2,float p2_1, float p2_2,float p3_1, float p3_2,float p4_1, float p4_2, float thick, Color color) {
+   return DrawSplineSegmentBasis((Vector2){p1_1, p1_2},(Vector2){p2_1, p2_2},(Vector2){p3_1, p3_2},(Vector2){p4_1, p4_2},thick,color);
+}
+RLAPI void shim_DrawSplineSegmentCatmullRom (float p1_1, float p1_2,float p2_1, float p2_2,float p3_1, float p3_2,float p4_1, float p4_2, float thick, Color color) {
+   return DrawSplineSegmentCatmullRom((Vector2){p1_1, p1_2},(Vector2){p2_1, p2_2},(Vector2){p3_1, p3_2},(Vector2){p4_1, p4_2},thick,color);
+}
+RLAPI void shim_DrawSplineSegmentBezierQuadratic (float p1_1, float p1_2,float c2_1, float c2_2,float p3_1, float p3_2, float thick, Color color) {
+   return DrawSplineSegmentBezierQuadratic((Vector2){p1_1, p1_2},(Vector2){c2_1, c2_2},(Vector2){p3_1, p3_2},thick,color);
+}
+RLAPI void shim_DrawSplineSegmentBezierCubic (float p1_1, float p1_2,float c2_1, float c2_2,float c3_1, float c3_2,float p4_1, float p4_2, float thick, Color color) {
+   return DrawSplineSegmentBezierCubic((Vector2){p1_1, p1_2},(Vector2){c2_1, c2_2},(Vector2){c3_1, c3_2},(Vector2){p4_1, p4_2},thick,color);
+}
+RLAPI Vector2 shim_GetSplinePointLinear (float startPos_1, float startPos_2,float endPos_1, float endPos_2, float t) {
+   return GetSplinePointLinear((Vector2){startPos_1, startPos_2},(Vector2){endPos_1, endPos_2},t);
+}
+RLAPI Vector2 shim_GetSplinePointBasis (float p1_1, float p1_2,float p2_1, float p2_2,float p3_1, float p3_2,float p4_1, float p4_2, float t) {
+   return GetSplinePointBasis((Vector2){p1_1, p1_2},(Vector2){p2_1, p2_2},(Vector2){p3_1, p3_2},(Vector2){p4_1, p4_2},t);
+}
+RLAPI Vector2 shim_GetSplinePointCatmullRom (float p1_1, float p1_2,float p2_1, float p2_2,float p3_1, float p3_2,float p4_1, float p4_2, float t) {
+   return GetSplinePointCatmullRom((Vector2){p1_1, p1_2},(Vector2){p2_1, p2_2},(Vector2){p3_1, p3_2},(Vector2){p4_1, p4_2},t);
+}
+RLAPI Vector2 shim_GetSplinePointBezierQuad (float p1_1, float p1_2,float c2_1, float c2_2,float p3_1, float p3_2, float t) {
+   return GetSplinePointBezierQuad((Vector2){p1_1, p1_2},(Vector2){c2_1, c2_2},(Vector2){p3_1, p3_2},t);
+}
+RLAPI Vector2 shim_GetSplinePointBezierCubic (float p1_1, float p1_2,float c2_1, float c2_2,float c3_1, float c3_2,float p4_1, float p4_2, float t) {
+   return GetSplinePointBezierCubic((Vector2){p1_1, p1_2},(Vector2){c2_1, c2_2},(Vector2){c3_1, c3_2},(Vector2){p4_1, p4_2},t);
+}
+RLAPI bool shim_CheckCollisionCircles (float center1_1, float center1_2, float radius1,float center2_1, float center2_2, float radius2) {
+   return CheckCollisionCircles((Vector2){center1_1, center1_2},radius1,(Vector2){center2_1, center2_2},radius2);
+}
+RLAPI bool shim_CheckCollisionCircleRec (float center_1, float center_2, float radius, Rectangle rec) {
+   return CheckCollisionCircleRec((Vector2){center_1, center_2},radius,rec);
+}
+RLAPI bool shim_CheckCollisionPointRec (float point_1, float point_2, Rectangle rec) {
+   return CheckCollisionPointRec((Vector2){point_1, point_2},rec);
+}
+RLAPI bool shim_CheckCollisionPointCircle (float point_1, float point_2,float center_1, float center_2, float radius) {
+   return CheckCollisionPointCircle((Vector2){point_1, point_2},(Vector2){center_1, center_2},radius);
+}
+RLAPI bool shim_CheckCollisionPointTriangle (float point_1, float point_2,float p1_1, float p1_2,float p2_1, float p2_2,float p3_1, float p3_2) {
+   return CheckCollisionPointTriangle((Vector2){point_1, point_2},(Vector2){p1_1, p1_2},(Vector2){p2_1, p2_2},(Vector2){p3_1, p3_2});
+}
+RLAPI bool shim_CheckCollisionPointPoly (float point_1, float point_2, Vector2 *points, int pointCount) {
+   return CheckCollisionPointPoly((Vector2){point_1, point_2},points,pointCount);
+}
+RLAPI bool shim_CheckCollisionLines (float startPos1_1, float startPos1_2,float endPos1_1, float endPos1_2,float startPos2_1, float startPos2_2,float endPos2_1, float endPos2_2, Vector2 *collisionPoint) {
+   return CheckCollisionLines((Vector2){startPos1_1, startPos1_2},(Vector2){endPos1_1, endPos1_2},(Vector2){startPos2_1, startPos2_2},(Vector2){endPos2_1, endPos2_2},collisionPoint);
+}
+RLAPI bool shim_CheckCollisionPointLine (float point_1, float point_2,float p1_1, float p1_2,float p2_1, float p2_2, int threshold) {
+   return CheckCollisionPointLine((Vector2){point_1, point_2},(Vector2){p1_1, p1_2},(Vector2){p2_1, p2_2},threshold);
+}
 RLAPI Image shim_LoadImageFromScreen (int i32) {
    return LoadImageFromScreen();
 }
 
+RLAPI void shim_ImageDrawPixelV (Image *dst,float position_1, float position_2, Color color) {
+   return ImageDrawPixelV(dst,(Vector2){position_1, position_2},color);
+}
+RLAPI void shim_ImageDrawLineV (Image *dst,float start_1, float start_2,float end_1, float end_2, Color color) {
+   return ImageDrawLineV(dst,(Vector2){start_1, start_2},(Vector2){end_1, end_2},color);
+}
+RLAPI void shim_ImageDrawCircleV (Image *dst,float center_1, float center_2, int radius, Color color) {
+   return ImageDrawCircleV(dst,(Vector2){center_1, center_2},radius,color);
+}
+RLAPI void shim_ImageDrawCircleLinesV (Image *dst,float center_1, float center_2, int radius, Color color) {
+   return ImageDrawCircleLinesV(dst,(Vector2){center_1, center_2},radius,color);
+}
+RLAPI void shim_ImageDrawRectangleV (Image *dst,float position_1, float position_2,float size_1, float size_2, Color color) {
+   return ImageDrawRectangleV(dst,(Vector2){position_1, position_2},(Vector2){size_1, size_2},color);
+}
+RLAPI void shim_ImageDrawTextEx (Image *dst, Font font, const char *text,float position_1, float position_2, float fontSize, float spacing, Color tint) {
+   return ImageDrawTextEx(dst,font,text,(Vector2){position_1, position_2},fontSize,spacing,tint);
+}
+RLAPI void shim_DrawTextureV (Texture2D texture,float position_1, float position_2, Color tint) {
+   return DrawTextureV(texture,(Vector2){position_1, position_2},tint);
+}
+RLAPI void shim_DrawTextureEx (Texture2D texture,float position_1, float position_2, float rotation, float scale, Color tint) {
+   return DrawTextureEx(texture,(Vector2){position_1, position_2},rotation,scale,tint);
+}
+RLAPI void shim_DrawTextureRec (Texture2D texture, Rectangle source,float position_1, float position_2, Color tint) {
+   return DrawTextureRec(texture,source,(Vector2){position_1, position_2},tint);
+}
+RLAPI void shim_DrawTexturePro (Texture2D texture, Rectangle source, Rectangle dest,float origin_1, float origin_2, float rotation, Color tint) {
+   return DrawTexturePro(texture,source,dest,(Vector2){origin_1, origin_2},rotation,tint);
+}
+RLAPI void shim_DrawTextureNPatch (Texture2D texture, NPatchInfo nPatchInfo, Rectangle dest,float origin_1, float origin_2, float rotation, Color tint) {
+   return DrawTextureNPatch(texture,nPatchInfo,dest,(Vector2){origin_1, origin_2},rotation,tint);
+}
 RLAPI Font shim_GetFontDefault (int i32) {
    return GetFontDefault();
 }
 
+RLAPI void shim_DrawTextEx (Font font, const char *text,float position_1, float position_2, float fontSize, float spacing, Color tint) {
+   return DrawTextEx(font,text,(Vector2){position_1, position_2},fontSize,spacing,tint);
+}
+RLAPI void shim_DrawTextPro (Font font, const char *text,float position_1, float position_2,float origin_1, float origin_2, float rotation, float fontSize, float spacing, Color tint) {
+   return DrawTextPro(font,text,(Vector2){position_1, position_2},(Vector2){origin_1, origin_2},rotation,fontSize,spacing,tint);
+}
+RLAPI void shim_DrawTextCodepoint (Font font, int codepoint,float position_1, float position_2, float fontSize, Color tint) {
+   return DrawTextCodepoint(font,codepoint,(Vector2){position_1, position_2},fontSize,tint);
+}
+RLAPI void shim_DrawTextCodepoints (Font font, const int *codepoints, int codepointCount,float position_1, float position_2, float fontSize, float spacing, Color tint) {
+   return DrawTextCodepoints(font,codepoints,codepointCount,(Vector2){position_1, position_2},fontSize,spacing,tint);
+}
 RLAPI void shim_DrawLine3D (float startPos_1, float startPos_2, float startPos_3,float endPos_1, float endPos_2, float endPos_3, Color color) {
    return DrawLine3D((Vector3){startPos_1, startPos_2, startPos_3},(Vector3){endPos_1, endPos_2, endPos_3},color);
 }
