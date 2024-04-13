@@ -14,7 +14,8 @@ unzip ./dep/interkosmos.zip -d ./dep
 rm ./dep/interkosmos.zip
 
 # Generate the C shim
-# Still an HTML file, so nothing to do here, I guess.  Produces:
+node ./lib/patch_prototype.js
+# Produces:
 # shim_raylib50.c
 # shim_raylib50_affect.txt
 

@@ -18,6 +18,8 @@ Otherwise, the version numbers for these dependencies are very important.  As ex
 * Emscripten 3.1.3
 * GFortran 4.6.4
 
+For running my shim script, `Node.js` will have to be installed as well. The version of node I have didn't support `.matchAll`, so I added a polyfill for it.
+
 ### How It Works
 
 #### Patching Interkosmos's Bindings
