@@ -6,7 +6,7 @@ CC=emcc
 FC=emfc.sh
 
 CCFLAGS=-I./dep/raylib-5.0_webassembly/include/ -s USE_GLFW=3 --shell-file ./src/shell_minimal.html
-FCFLAGS=-fno-range-check
+FCFLAGS=-fno-range-check -ffree-line-length-none
 WLDFLAGS=-s WASM=1
 
 OUTDIR=./build
